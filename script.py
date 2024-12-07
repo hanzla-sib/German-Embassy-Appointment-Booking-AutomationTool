@@ -49,12 +49,20 @@ if base64_match:
         
         #--------------------------------Correct till here--------------------------------
         # Click the "Appointments are available" link
-        appointments_link = driver.find_element(By.XPATH, "//a[contains(text(), 'available')]")
+        
+        appointments_link=WebDriverWait(driver, 50).until(
+            EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'available')]"))
+        )
+
         appointments_link.click()
         
         # Click the "Book this appointment" button
-        book_button = driver.find_element(By.XPATH, "//a[contains(text(), 'this')]")
-        book_button.click()
+    
+        appointments_link=WebDriverWait(driver, 50).until(
+            EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
+        )
+
+        appointments_link.click()
         
         # Capture page HTML
         page_html = driver.page_source
