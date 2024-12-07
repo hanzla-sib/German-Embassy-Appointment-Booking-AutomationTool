@@ -26,15 +26,15 @@
 
 # # Extract the background-image style attribute
 # background_image_style = captcha_div.get_attribute("style")
-# print(background_image_style)
+
 # # Use regular expression to extract the base64 data from the style attribute
 # base64_match = re.search(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\']?\)', background_image_style)
-# print(base64_match)
+
 
 # # If a base64 image is found, extract it
 # if base64_match:
 #     base64_image = base64_match.group(1)
-#     print(base64_image)
+
 #     api_key = os.getenv('APIKEY_2CAPTCHA', '80921b7e4175ef3a4721e75cc867f3cb')
 #     solver = TwoCaptcha(api_key)
 #     try:
@@ -71,7 +71,7 @@
 #         with open('captured_page.html', 'w', encoding='utf-8') as f:
 #             f.write(page_html)
         
-#         print("Booking process completed. HTML saved to captured_page.html")
+#        
 #     except Exception as e:
 #         sys.exit(e)
 
@@ -142,41 +142,43 @@ Nationality_input.send_keys(nationality)
 page_html = driver.page_source
 
 
-print("Booking process completed. HTML saved to captured_page.html")
-input("Press Enter to exit and close the browser...")
 
 
 
-# captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
 
-# # Extract the background-image style attribute
-# background_image_style = captcha_div.get_attribute("style")
-# print(background_image_style)
-# # Use regular expression to extract the base64 data from the style attribute
-# base64_match = re.search(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\']?\)', background_image_style)
+
+captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
+
+# Extract the background-image style attribute
+background_image_style = captcha_div.get_attribute("style")
+
+# Use regular expression to extract the base64 data from the style attribute
+base64_match = re.search(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\']?\)', background_image_style)
 # print(base64_match)
 
+
 # # If a base64 image is found, extract it
-# if base64_match:
-#     base64_image = base64_match.group(1)
-#     print(base64_image)
-#     api_key = os.getenv('APIKEY_2CAPTCHA', '80921b7e4175ef3a4721e75cc867f3cb')
-#     solver = TwoCaptcha(api_key)
-#     try:
-#         result = solver.normal(base64_image)
-#         captcha_input = driver.find_element(By.ID, 'appointment_captcha_month_captchaText')
-#         captcha_code = result['code']  # Assuming this is from the previous 2Captcha result
-#         captcha_input.send_keys(captcha_code)
+if base64_match:
+    base64_image = base64_match.group(1)
+    print(base64_image)
+   
+    api_key = os.getenv('APIKEY_2CAPTCHA', '80921b7e4175ef3a4721e75cc867f3cb')
+    solver = TwoCaptcha(api_key)
+    try:
+        result = solver.normal(base64_image)
+        captcha_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_captchaText')
+        captcha_code = result['code']  # Assuming this is from the previous 2Captcha result
+        captcha_input.send_keys(captcha_code)
         
-#         # Submit the form
-#         submit_button = driver.find_element(By.ID, 'appointment_captcha_month_appointment_showMonth')
-#         submit_button.click()
+        # Submit the form
+        submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
+        # submit_button.click()
         
-#         #--------------------------------Correct till here--------------------------------
-#         # Click the "Appointments are available" link
+        input("Press Enter to exit and close the browser...")
+      
         
-#     except Exception as e:
-#         sys.exit(e)
+    except Exception as e:
+        sys.exit(e)
 
 
 
