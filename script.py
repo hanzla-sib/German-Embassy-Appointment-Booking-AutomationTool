@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import re
 import sys
 import os
-
+from selenium.common.exceptions import TimeoutException
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 from twocaptcha import TwoCaptcha
@@ -50,11 +50,22 @@ if base64_match:
         #--------------------------------Correct till here--------------------------------
         # Click the "Appointments are available" link
         
-        appointments_link=WebDriverWait(driver, 50).until(
-            EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'available')]"))
-        )
+        # appointments_link=WebDriverWait(driver, 50).until(
+        #     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'available')]"))
+        # )
 
-        appointments_link.click()
+        # appointments_link.click()
+        while True:
+            try:
+                appointments_link = WebDriverWait(driver, 2).until(
+                    EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'available')]"))
+                )
+                print("Appointments are available!")
+                appointments_link.click()
+                break
+            except TimeoutException:
+                print("Appointments not available, refreshing the page...")
+                driver.refresh()
         
         # Click the "Book this appointment" button
     
