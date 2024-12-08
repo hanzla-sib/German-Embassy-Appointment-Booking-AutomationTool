@@ -129,7 +129,7 @@ if base64_match:
                 
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
-                submit_button.click()
+                # submit_button.click()
                 page_html = driver.page_source
                 with open('captured_page.html', 'w', encoding='utf-8') as f:
                     f.write(page_html)
