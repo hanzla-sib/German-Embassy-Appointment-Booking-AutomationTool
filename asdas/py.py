@@ -27,7 +27,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=59, microsecond=0)
+    target_time = now.replace(hour=0, minute=7, second=10, microsecond=0)
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
@@ -101,7 +101,9 @@ if base64_match:
         appointments_link.click()
         
         
-        element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
+        delay=WebDriverWait(driver, 50).until(
+            EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'last')]"))
+        )
         
     
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
