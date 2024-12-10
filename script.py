@@ -27,7 +27,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    target_time = now.replace(hour=23, minute=59, second=59, microsecond=0)
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
