@@ -21,7 +21,7 @@ driver = webdriver.Chrome(service=service)
 
 def wait_until_4am():
     """
-    Wait until exactly 12:00:00 AM before executing the submit action
+    Wait until exactly 4:00:00 AM before executing the submit action
     """
     # Get current time
     now = datetime.now()
