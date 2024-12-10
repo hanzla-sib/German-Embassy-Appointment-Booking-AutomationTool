@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+import time
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
@@ -17,9 +19,29 @@ service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
 
 
+def wait_until_4am():
+    """
+    Wait until exactly 12:00:00 AM before executing the submit action
+    """
+    # Get current time
+    now = datetime.now()
+    
+    # Calculate time to 4:00:00 AM
+    target_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    # If we've already passed 4 AM today, target tomorrow's 4 AM
+    if now.time() >= target_time.time():
+        target_time += timedelta(days=1)
+    
+    # Calculate seconds to wait
+    wait_seconds = (target_time - now).total_seconds()
+    
+    print(f"Waiting until exactly 4:00:00 AM. Sleeping for {wait_seconds} seconds...")
+    # Precise waiting
+    time.sleep(wait_seconds)
+
+
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=kara&realmId=967&categoryId=2801")
-# driver.get("https://appointment-booking-automation-tool.vercel.app/")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=kara&realmId=967&categoryId=1988")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
@@ -45,27 +67,30 @@ if base64_match:
         
         # Submit the form
         submit_button = driver.find_element(By.ID, 'appointment_captcha_month_appointment_showMonth')
+
+        wait_until_4am()
         submit_button.click()
         
         #--------------------------------Correct till here--------------------------------
         # Click the "Appointments are available" link
         
-        # appointments_link=WebDriverWait(driver, 50).until(
-        #     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'available')]"))
-        # )
-
-        # appointments_link.click()
         while True:
             try:
+                # Wait for the "Appointments are available" link
                 appointments_link = WebDriverWait(driver, 2).until(
                     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'available')]"))
                 )
+                
+                # If link is found, print success and click
                 print("Appointments are available!")
                 appointments_link.click()
                 break
+            
             except TimeoutException:
-                print("Appointments not available, refreshing the page...")
+                # If link not found, reload the page
+                print("No available appointments. Reloading...")
                 driver.refresh()
+                
         
         # Click the "Book this appointment" button
     
@@ -82,24 +107,24 @@ if base64_match:
         
     
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
-        last_name = "Hanzla"  # Assuming this is from the previous 2Captcha result
+        last_name = "KHAN"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
 
 
         firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "Hanzla"  # Assuming this is from the previous 2Captcha result
+        first_name = "AMMAR"  # Assuming this is from the previous 2Captcha result
         firstname_input.send_keys(first_name)
 
         email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "hanzlasib@gmail.com"  # Assuming this is from the previous 2Captcha result
+        email = "ammarkhan67911@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input.send_keys(email)
 
         email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "hanzlasib@gmail.com"  # Assuming this is from the previous 2Captcha result
+        emailrepeat = "ammarkhan67911@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input_repeat.send_keys(emailrepeat)
 
         passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "HN213123123"  # Assuming this is from the previous 2Captcha result
+        passportnumber = "XQ4120282"  # Assuming this is from the previous 2Captcha result
         passportNumber_input.send_keys(passportnumber)
 
         Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')
@@ -110,10 +135,6 @@ if base64_match:
         Nationality_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_2__content')
         nationality = "Paksitan"  # Assuming this is from the previous 2Captcha result
         Nationality_input.send_keys(nationality)
-
-        
-
-
 
         captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
 
@@ -140,33 +161,9 @@ if base64_match:
                 
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
-                # submit_button.click()
-                page_html = driver.page_source
-                with open('captured_page.html', 'w', encoding='utf-8') as f:
-                    f.write(page_html)
+                submit_button.click()
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
                 sys.exit(e)
     except Exception as e:
         sys.exit(e)
-
-
-
-# #appointment_newAppointmentForm_captchaText
-# #appointment_newAppointmentForm_appointment_addAppointmen
-
-
-
-
-
-    # Open the target webpage
-
-
-
-
-
-
-
-
-#appointment_newAppointmentForm_captchaText
-#appointment_newAppointmentForm_appointment_addAppointmen
