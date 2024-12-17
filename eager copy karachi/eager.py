@@ -15,6 +15,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from twocaptcha import TwoCaptcha
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 options = webdriver.ChromeOptions()
+
 options.page_load_strategy = 'eager'
 driver = webdriver.Chrome(options=options)
 
@@ -27,7 +28,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=54, microsecond=0)
+    target_time = now.replace(hour=23, minute=59, second=56, microsecond=0)
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
@@ -41,9 +42,10 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=kara&realmId=967&categoryId=1988")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=15.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
+
 captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
 
 # Extract the background-image style attribute
@@ -56,17 +58,20 @@ base64_match = re.search(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\'
 # If a base64 image is found, extract it
 if base64_match:
     base64_image = base64_match.group(1)
-
+    
     api_key = os.getenv('APIKEY_2CAPTCHA', '80921b7e4175ef3a4721e75cc867f3cb')
     solver = TwoCaptcha(api_key)
     try:
         result = solver.normal(base64_image)
-        captcha_input = driver.find_element(By.ID, 'appointment_captcha_month_captchaText')
+        print("hello1")
+        captcha_input = driver.find_element(By.ID, 'appointment_captcha_day_captchaText')
+        print("hello2")
         captcha_code = result['code']  # Assuming this is from the previous 2Captcha result
         captcha_input.send_keys(captcha_code)
+        print("hello3")
         
         # Submit the form
-        submit_button = driver.find_element(By.ID, 'appointment_captcha_month_appointment_showMonth')
+        submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
 
         wait_until_4am()
         submit_button.click()
@@ -78,7 +83,7 @@ if base64_match:
             try:
                 # Wait for the "Appointments are available" link
                 appointments_link = WebDriverWait(driver, 1).until(
-                    EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'available')]"))
+                    EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
                 )
                 
                 # If link is found, print success and click
@@ -94,11 +99,11 @@ if base64_match:
         
         # Click the "Book this appointment" button
     
-        appointments_link=WebDriverWait(driver, 50).until(
-            EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
-        )
+        # appointments_link=WebDriverWait(driver, 50).until(
+        #     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
+        # )
 
-        appointments_link.click()
+        # appointments_link.click()
         
         
         element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
