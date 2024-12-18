@@ -50,6 +50,7 @@ def wait_until_4am():
     
     # Calculate time to 4:00:00 AM
     target_time = now.replace(hour=23, minute=59, second=56, microsecond=0)
+
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
@@ -63,7 +64,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=15.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=16.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -93,7 +94,8 @@ if base64_match:
         # Submit the form
         submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
 
-        # wait_until_4am()
+        wait_until_4am()
+        
         submit_button.click()
         
         #--------------------------------Correct till here--------------------------------
@@ -108,12 +110,14 @@ if base64_match:
                 
                 # If link is found, print success and click
                 print("Appointments are available!")
+                
                 appointments_link.click()
                 break
             
             except TimeoutException:
                 # If link not found, reload the page
                 print("No available appointments. Reloading...")
+                
                 driver.refresh()
                 
         
@@ -124,27 +128,27 @@ if base64_match:
         
     
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
-        last_name = "KHAN"  # Assuming this is from the previous 2Captcha result
+        last_name = "PIRZADA"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
 
 
         firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "AMMAR"  # Assuming this is from the previous 2Captcha result
+        first_name = "SYED MUHAMMAD MAAZ"  # Assuming this is from the previous 2Captcha result
         firstname_input.send_keys(first_name)
 
 
         email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "ammarkhan67911@gmail.com"  # Assuming this is from the previous 2Captcha result
+        email = "maazmuhammad2025@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input.send_keys(email)
 
 
         email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "ammarkhan67911@gmail.com"  # Assuming this is from the previous 2Captcha result
+        emailrepeat = "maazmuhammad2025@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input_repeat.send_keys(emailrepeat)
 
         
         passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "XQ4120282"  # Assuming this is from the previous 2Captcha result
+        passportnumber = "AC3910622"  # Assuming this is from the previous 2Captcha result
         passportNumber_input.send_keys(passportnumber)
 
         Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')
@@ -170,6 +174,7 @@ if base64_match:
                 captcha_input.send_keys(cap)
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
+                time.sleep(2.5)
                 submit_button.click()
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
