@@ -64,7 +64,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=17.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=17.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -128,27 +128,27 @@ if base64_match:
         
     
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
-        last_name = "REHMAN"  # Assuming this is from the previous 2Captcha result
+        last_name = "ANSARI"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
 
 
         firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "ADIL"  # Assuming this is from the previous 2Captcha result
+        first_name = "FAHAD AHMED"  # Assuming this is from the previous 2Captcha result
         firstname_input.send_keys(first_name)
 
 
         email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "adilreh2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        email = "fahadahmadd2025@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input.send_keys(email)
 
 
         email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "adilreh2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        emailrepeat = "fahadahmadd2025@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input_repeat.send_keys(emailrepeat)
 
         
         passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "ZE9156761"  # Assuming this is from the previous 2Captcha result
+        passportnumber = "EC1719191"  # Assuming this is from the previous 2Captcha result
         passportNumber_input.send_keys(passportnumber)
 
         Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')

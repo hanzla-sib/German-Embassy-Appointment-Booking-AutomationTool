@@ -50,6 +50,7 @@ def wait_until_4am():
     
     # Calculate time to 4:00:00 AM
     target_time = now.replace(hour=23, minute=59, second=56, microsecond=0)
+
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
@@ -93,8 +94,8 @@ if base64_match:
         # Submit the form
         submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
 
-        # wait_until_4am()
-        time.sleep(2.5)
+        wait_until_4am()
+        
         submit_button.click()
         
         #--------------------------------Correct till here--------------------------------
@@ -173,7 +174,7 @@ if base64_match:
                 captcha_input.send_keys(cap)
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
-                time.sleep(3)
+                time.sleep(2.5)
                 submit_button.click()
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
