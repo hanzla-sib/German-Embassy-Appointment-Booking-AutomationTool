@@ -9,3 +9,6 @@ openingPeriodId=68486 for masters 9:00-9:30
 9 - 9:30  68486
 https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=20.01.2025&openingPeriodId=68486
 https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=07.01.2025&openingPeriodId=68486
+
+bachelors
+https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=20.01.2025&openingPeriodId=43852
