@@ -64,7 +64,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=20.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=20.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -93,25 +93,31 @@ if base64_match:
         
         # Submit the form
         submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
-
+        
         wait_until_4am()
         
         submit_button.click()
-        
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=20.01.2025&openingPeriodId=68486"
+
+# Load the target URL
+        driver.get(target_url)
+       
+
         #--------------------------------Correct till here--------------------------------
         # Click the "Appointments are available" link
         
         while True:
             try:
                 # Wait for the "Appointments are available" link
-                appointments_link = WebDriverWait(driver, 0.5).until(
-                    EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
-                )
+                # appointments_link = WebDriverWait(driver, 1).until(
+                #     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
+                # )
+                element = WebDriverWait(driver,0.5).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
                 
                 # If link is found, print success and click
                 print("Appointments are available!")
                 
-                appointments_link.click()
+                # appointments_link.click()
                 break
             
             except TimeoutException:
@@ -124,31 +130,31 @@ if base64_match:
        
         
         
-        element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
+        # element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
         
     
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
-        last_name = "--"  # Assuming this is from the previous 2Captcha result
+        last_name = "REHMAN"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
 
 
         firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "HAMNAH"  # Assuming this is from the previous 2Captcha result
+        first_name = "ADIL"  # Assuming this is from the previous 2Captcha result
         firstname_input.send_keys(first_name)
 
 
         email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "hamnah2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        email = "adilreh2025@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input.send_keys(email)
 
 
         email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "hamnah2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        emailrepeat = "adilreh2025@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input_repeat.send_keys(emailrepeat)
 
         
         passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "LR0009511"  # Assuming this is from the previous 2Captcha result
+        passportnumber = "ZE9156761"  # Assuming this is from the previous 2Captcha result
         passportNumber_input.send_keys(passportnumber)
 
         Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')
@@ -175,7 +181,7 @@ if base64_match:
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
                 current_url = driver.current_url
-                print(f"Current URL Oppurtunity before submission: {current_url}")
+                print(f"Current URL before submission: {current_url}")
                 time.sleep(3)
                 submit_button.click()
                 input("Press Enter to exit and close the browser...")

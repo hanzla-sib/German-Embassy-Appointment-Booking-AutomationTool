@@ -64,7 +64,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=17.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=20.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -104,7 +104,7 @@ if base64_match:
         while True:
             try:
                 # Wait for the "Appointments are available" link
-                appointments_link = WebDriverWait(driver, 1).until(
+                appointments_link = WebDriverWait(driver, 0.5).until(
                     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
                 )
                 
@@ -174,6 +174,8 @@ if base64_match:
                 captcha_input.send_keys(cap)
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
+                current_url = driver.current_url
+                print(f"Current URL BAchelors before submission: {current_url}")
                 time.sleep(2.5)
                 submit_button.click()
                 input("Press Enter to exit and close the browser...")
