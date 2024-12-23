@@ -14,7 +14,6 @@ import os
 from selenium.common.exceptions import TimeoutException
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-from twocaptcha import TwoCaptcha
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 options = webdriver.ChromeOptions()
 
@@ -49,7 +48,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=56, microsecond=0)
+    target_time = now.replace(hour=23, minute=59, second=54, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -94,7 +93,7 @@ if base64_match:
         # Submit the form
         submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
 
-        # wait_until_4am()
+        wait_until_4am()
         submit_button.click()
         target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=21.01.2025&openingPeriodId=43852"
 
