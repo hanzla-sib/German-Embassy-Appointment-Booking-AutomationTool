@@ -64,7 +64,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=17.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=21.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -174,7 +174,9 @@ if base64_match:
                 captcha_input.send_keys(cap)
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
-                time.sleep(2.5)
+                current_url = driver.current_url
+                print(f"Current URL Masters before submission: {current_url}")
+                time.sleep(3)
                 submit_button.click()
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
