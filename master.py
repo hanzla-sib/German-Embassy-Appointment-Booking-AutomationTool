@@ -175,7 +175,7 @@ if base64_match:
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
                 current_url = driver.current_url
                 print(f"Current URL Masters before submission: {current_url}")
-                # time.sleep(3)
+                time.sleep(3)
                 submit_button.click()
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
