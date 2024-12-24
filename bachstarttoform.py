@@ -63,7 +63,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=22.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=kara&realmId=967&categoryId=1988")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -84,18 +84,18 @@ if base64_match:
     try:
         # result = solver.normal(base64_image)
        
-        captcha_input = driver.find_element(By.ID, 'appointment_captcha_day_captchaText')
+        captcha_input = driver.find_element(By.ID, 'appointment_captcha_month_captchaText')
        
         # captcha_code = result['code']  # Assuming this is from the previous 2Captcha result
         captcha_input.send_keys(cap)
        
         
         # Submit the form
-        submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
+        submit_button = driver.find_element(By.ID, 'appointment_captcha_month_appointment_showMonth')
 
         wait_until_4am()
         submit_button.click()
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=21.01.2025&openingPeriodId=43852"
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=22.01.2025&openingPeriodId=43852"
 
 # Load the target URL
         driver.get(target_url)
