@@ -49,7 +49,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=56, microsecond=0)
+    target_time = now.replace(hour=23, minute=59, second=54, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -64,7 +64,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=21.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=23.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 

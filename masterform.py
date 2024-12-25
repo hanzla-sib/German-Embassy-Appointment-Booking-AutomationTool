@@ -97,7 +97,7 @@ if base64_match:
         wait_until_4am()
         
         submit_button.click()
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=21.01.2025&openingPeriodId=68486"
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=23.01.2025&openingPeriodId=68486"
 
 # Load the target URL
         driver.get(target_url)

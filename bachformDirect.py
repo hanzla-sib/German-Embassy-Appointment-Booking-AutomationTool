@@ -95,7 +95,7 @@ if base64_match:
 
         wait_until_4am()
         submit_button.click()
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=22.01.2025&openingPeriodId=43852"
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=23.01.2025&openingPeriodId=43852"
 
 # Load the target URL
         driver.get(target_url)
@@ -125,10 +125,10 @@ if base64_match:
         
        
         
-        
+        print("cehcking div")
         element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
         
-    
+        print("form entered")
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
         last_name = "ANSARI"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
