@@ -13,8 +13,6 @@ import sys
 import os
 from selenium.common.exceptions import TimeoutException
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-
-from twocaptcha import TwoCaptcha
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 options = webdriver.ChromeOptions()
 
