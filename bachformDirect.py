@@ -177,7 +177,7 @@ if base64_match:
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
                 current_url = driver.current_url
-                print(f"Current URL BAchelors before submission: {current_url}")
+                print(f"Current URL BAchelors by direct form before submission: {current_url}")
                 time.sleep(3)
                 submit_button.click()
                 input("Press Enter to exit and close the browser...")
