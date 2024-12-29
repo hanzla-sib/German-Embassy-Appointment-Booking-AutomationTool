@@ -48,7 +48,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=54, microsecond=0)
+    target_time = now.replace(hour=23, minute=59, second=57, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -63,7 +63,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=25.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=27.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -103,7 +103,7 @@ if base64_match:
         while True:
             try:
                 # Wait for the "Appointments are available" link
-                appointments_link = WebDriverWait(driver, 0.5).until(
+                appointments_link = WebDriverWait(driver, 0.25).until(
                     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
                 )
                 
