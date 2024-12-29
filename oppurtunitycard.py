@@ -48,7 +48,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=57, microsecond=0)
+    target_time = now.replace(hour=23, minute=59, second=54, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -103,7 +103,7 @@ if base64_match:
         while True:
             try:
                 # Wait for the "Appointments are available" link
-                appointments_link = WebDriverWait(driver, 0.25).until(
+                appointments_link = WebDriverWait(driver, 0.5).until(
                     EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
                 )
                 
