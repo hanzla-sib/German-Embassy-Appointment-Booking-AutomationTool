@@ -178,7 +178,7 @@ if base64_match:
                 time.sleep(3)
                 submit_button.click()
                 
-                print("completed in = " + datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
+                print("completed in = ", datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
                 sys.exit(e)

@@ -63,7 +63,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=22.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=28.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
