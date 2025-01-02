@@ -48,7 +48,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=54, microsecond=0)
+    target_time = now.replace(hour=0, minute=23, second=20, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -63,7 +63,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=28.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=31.01.2025&openingPeriodId=68494")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -93,40 +93,40 @@ if base64_match:
         # Submit the form
         submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
 
-        wait_until_4am()
+        
         submit_button.click()
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=21.01.2025&openingPeriodId=43852"
-
-# Load the target URL
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=31.01.2025&openingPeriodId=68494"
+        wait_until_4am()
         driver.get(target_url)
+        
        
         
         
         #--------------------------------Correct till here--------------------------------
         # Click the "Appointments are available" link
         
-        while True:
-            try:
-                # Wait for the "Appointments are available" link
-                element = WebDriverWait(driver,0.5).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
+        # while True:
+        #     try:
+        #         # Wait for the "Appointments are available" link
+        #         element = WebDriverWait(driver,0.5).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
                 
-                # If link is found, print success and click
-                print("Appointments are available!")
+        #         # If link is found, print success and click
+        #         print("Appointments are available!")
                 
                 
-                break
+        #         break
             
-            except TimeoutException:
-                # If link not found, reload the page
-                print("No available appointments. Reloading...")
+        #     except TimeoutException:
+        #         # If link not found, reload the page
+        #         print("No available appointments. Reloading...")
                 
-                driver.refresh()
+        #         driver.refresh()
                 
         
        
         
         
-        element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
+        # element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
         
     
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
@@ -180,6 +180,7 @@ if base64_match:
                 print(f"Current URL BAchelors before submission: {current_url}")
                 time.sleep(3)
                 submit_button.click()
+                print("completed in = ", datetime.now()-datetime.now().replace(hour=0, minute=23, second=20, microsecond=0))
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
                 sys.exit(e)
