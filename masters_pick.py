@@ -14,7 +14,6 @@ import os
 from selenium.common.exceptions import TimeoutException
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-from twocaptcha import TwoCaptcha
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 options = webdriver.ChromeOptions()
 
@@ -49,7 +48,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=23, minute=59, second=56, microsecond=0)
+    target_time = now.replace(hour=23, minute=59, second=54, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -64,7 +63,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=16.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=31.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -104,14 +103,23 @@ if base64_match:
         while True:
             try:
                 # Wait for the "Appointments are available" link
-                appointments_link = WebDriverWait(driver, 1).until(
-                    EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
+                appointments_links = WebDriverWait(driver, 0.5).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//a[contains(text(), 'this')]"))
                 )
-                
-                # If link is found, print success and click
+            
+            
+            
                 print("Appointments are available!")
+            
+                for index, link in enumerate(appointments_links):
+                    link_href = link.get_attribute('href')
+                    print(f"{index + 1}: {link_href}")
+           
+               
+                input("Press Enter to exit and close the browser...")
                 
-                appointments_link.click()
+                
+                
                 break
             
             except TimeoutException:
@@ -120,63 +128,6 @@ if base64_match:
                 
                 driver.refresh()
                 
-        
-       
-        
-        
-        element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
-        
-    
-        lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
-        last_name = "PIRZADA"  # Assuming this is from the previous 2Captcha result
-        lastname_input.send_keys(last_name)
-
-
-        firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "SYED MUHAMMAD MAAZ"  # Assuming this is from the previous 2Captcha result
-        firstname_input.send_keys(first_name)
-
-
-        email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "maazmuhammad2025@gmail.com"  # Assuming this is from the previous 2Captcha result
-        email_input.send_keys(email)
-
-
-        email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "maazmuhammad2025@gmail.com"  # Assuming this is from the previous 2Captcha result
-        email_input_repeat.send_keys(emailrepeat)
-
-        
-        passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "AC3910622"  # Assuming this is from the previous 2Captcha result
-        passportNumber_input.send_keys(passportnumber)
-
-        Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')
-        province = "Sindh"  # Assuming this is from the previous 2Captcha result
-        Province_input.send_keys(province)
-
-
-        Nationality_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_2__content')
-        nationality = "Paksitan"  
-        Nationality_input.send_keys(nationality)
-
-        captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
-
-        background_image_style = captcha_div.get_attribute("style")
-
-        base64_match = re.search(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\']?\)', background_image_style)
-        
-        if base64_match:
-            base64_image = base64_match.group(1)
-            cap=solve_captcha(base64_image)
-            try:
-                captcha_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_captchaText')
-                captcha_input.send_keys(cap)
-                # Submit the form
-                submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
-                time.sleep(2.5)
-                submit_button.click()
-                input("Press Enter to exit and close the browser...")
             except Exception as e:
                 sys.exit(e)
     except Exception as e:

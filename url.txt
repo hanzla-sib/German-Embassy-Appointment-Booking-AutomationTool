@@ -52,8 +52,8 @@ masters slot 1 code
 
 
 Tuesday
-masters second slot + 3 4 5
-bachelors slot code
+masters auto slots
+bachelors auto slots
 manual booking masters 
 
 Wednesday
