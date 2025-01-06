@@ -48,7 +48,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=0, minute=23, second=20, microsecond=0)
+    target_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -96,61 +96,34 @@ if base64_match:
         
         submit_button.click()
         target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=31.01.2025&openingPeriodId=68494"
-        wait_until_4am()
+        # wait_until_4am()
         driver.get(target_url)
         
        
         
-        
-        #--------------------------------Correct till here--------------------------------
-        # Click the "Appointments are available" link
-        
-        # while True:
-        #     try:
-        #         # Wait for the "Appointments are available" link
-        #         element = WebDriverWait(driver,0.5).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
-                
-        #         # If link is found, print success and click
-        #         print("Appointments are available!")
-                
-                
-        #         break
-            
-        #     except TimeoutException:
-        #         # If link not found, reload the page
-        #         print("No available appointments. Reloading...")
-                
-        #         driver.refresh()
-                
-        
-       
-        
-        
-        # element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
-        
     
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
-        last_name = "ANSARI"  # Assuming this is from the previous 2Captcha result
+        last_name = "KHAN"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
 
 
         firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "FAHAD AHMED"  # Assuming this is from the previous 2Captcha result
+        first_name = "AIMON"  # Assuming this is from the previous 2Captcha result
         firstname_input.send_keys(first_name)
 
 
         email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "fahadahmadd2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        email = "aimonkhan24@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input.send_keys(email)
 
 
         email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "fahadahmadd2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        emailrepeat = "aimonkhan24@gmail.com"  # Assuming this is from the previous 2Captcha result
         email_input_repeat.send_keys(emailrepeat)
 
         
         passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "EC1719191"  # Assuming this is from the previous 2Captcha result
+        passportnumber = "KN4145152"  # Assuming this is from the previous 2Captcha result
         passportNumber_input.send_keys(passportnumber)
 
         Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')
@@ -180,7 +153,7 @@ if base64_match:
                 print(f"Current URL BAchelors before submission: {current_url}")
                 time.sleep(3)
                 submit_button.click()
-                print("completed in = ", datetime.now()-datetime.now().replace(hour=0, minute=23, second=20, microsecond=0))
+                print("completed in = ", datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
                 sys.exit(e)

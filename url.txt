@@ -16,3 +16,58 @@ https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=k
 
 Chancenkarte
 https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=21.01.2025&openingPeriodId=60825
+
+
+
+
+https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=31.01.2025&openingPeriodId=60825
+https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=03.02.2025&openingPeriodId=68494
+
+
+
+
+
+
+Monday
+Masters: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=31.01.2025&openingPeriodId=68494
+bachleors:https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=20.01.2025&openingPeriodId=43852
+
+
+
+Tuesday:
+masters :https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=07.01.2025&openingPeriodId=68486
+Oppurtunity card : https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=21.01.2025&openingPeriodId=60825
+
+
+Friday: 
+Masters : "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025&openingPeriodId=68494"
+
+
+
+
+
+Monday
+oppurtunity slot code
+masters slot 1 code
+
+
+Tuesday
+masters second slot + 3 4 5
+bachelors 
+manual booking masters 
+
+Wednesday
+masters slot 1 code
+bachelors slot code
+opputunity code 
+masters slot 2 manual
+
+
+Thursday
+manual booking
+
+Friday
+masters slot 1 code
+bachelors slot code
+opputunity code 
+

@@ -13,7 +13,6 @@ import sys
 import os
 from selenium.common.exceptions import TimeoutException
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 options = webdriver.ChromeOptions()
 
@@ -63,7 +62,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showMonth.do?locationCode=kara&realmId=967&categoryId=1988")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=31.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -84,23 +83,18 @@ if base64_match:
     try:
         # result = solver.normal(base64_image)
        
-        captcha_input = driver.find_element(By.ID, 'appointment_captcha_month_captchaText')
+        captcha_input = driver.find_element(By.ID, 'appointment_captcha_day_captchaText')
        
         # captcha_code = result['code']  # Assuming this is from the previous 2Captcha result
         captcha_input.send_keys(cap)
        
         
         # Submit the form
-        submit_button = driver.find_element(By.ID, 'appointment_captcha_month_appointment_showMonth')
+        submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
 
         wait_until_4am()
-        submit_button.click()
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=28.01.2025&openingPeriodId=43852"
-
-# Load the target URL
-        driver.get(target_url)
-       
         
+        submit_button.click()
         
         #--------------------------------Correct till here--------------------------------
         # Click the "Appointments are available" link
@@ -108,12 +102,14 @@ if base64_match:
         while True:
             try:
                 # Wait for the "Appointments are available" link
-                element = WebDriverWait(driver,0.5).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
+                appointments_link = WebDriverWait(driver, 0.5).until(
+                    EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
+                )
                 
                 # If link is found, print success and click
                 print("Appointments are available!")
                 
-                
+                appointments_link.click()
                 break
             
             except TimeoutException:
@@ -125,10 +121,10 @@ if base64_match:
         
        
         
-        print("cehcking div")
+        
         element = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.ID, "wwlbl_appointment_newAppointmentForm_lastname")))
         
-        print("form entered")
+    
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
         last_name = "ANSARI"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
@@ -177,9 +173,10 @@ if base64_match:
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
                 current_url = driver.current_url
-                print(f"Current URL BAchelors by direct form before submission: {current_url}")
+                print(f"Current URL BAchelors before submission: {current_url}")
                 time.sleep(3)
-                submit_button.click()
+                # submit_button.click()
+                print("completed in = ", datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
                 sys.exit(e)
