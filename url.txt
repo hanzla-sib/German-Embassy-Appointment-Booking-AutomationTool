@@ -53,7 +53,7 @@ masters slot 1 code
 
 Tuesday
 masters second slot + 3 4 5
-bachelors 
+bachelors slot code
 manual booking masters 
 
 Wednesday
