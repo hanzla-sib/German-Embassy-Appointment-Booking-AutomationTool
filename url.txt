@@ -32,11 +32,19 @@ Monday
 Masters: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=31.01.2025&openingPeriodId=68494
 bachleors:https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=20.01.2025&openingPeriodId=43852
 
-
-
 Tuesday:
-masters :https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=07.01.2025&openingPeriodId=68486
-Oppurtunity card : https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=21.01.2025&openingPeriodId=60825
+masters
+1: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=04.02.2025&openingPeriodId=68486
+2: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=04.02.2025&openingPeriodId=68491
+bachelor
+1: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=04.02.2025&openingPeriodId=43846
+Oppurtunity card
+https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=21.01.2025&openingPeriodId=60825
+
+Wednesday
+
+
+Thursday
 
 
 Friday: 

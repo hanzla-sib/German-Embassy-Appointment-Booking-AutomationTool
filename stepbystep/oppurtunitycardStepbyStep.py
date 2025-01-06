@@ -103,14 +103,15 @@ if base64_match:
         while True:
             try:
                 # Wait for the "Appointments are available" link
-                appointments_link = WebDriverWait(driver, 0.5).until(
-                    EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'this')]"))
+                appointments_links = WebDriverWait(driver, 0.5).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//a[contains(text(), 'this')]"))
                 )
-                
-                # If link is found, print success and click
+            
+            
+            
                 print("Appointments are available!")
                 
-                appointments_link.click()
+                appointments_links[1].click()
                 break
             
             except TimeoutException:
