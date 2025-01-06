@@ -47,27 +47,25 @@ Masters : "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?loc
 
 
 Monday
-oppurtunity slot code
-masters slot 1 code
+
 
 
 Tuesday
-masters auto slots
-bachelors auto slots
-manual booking masters 
+master slots + bachelor + Hanzla laptop
+master booking + oppurtunitybooking + bilal
+ 
 
 Wednesday
-masters slot 1 code
-bachelors slot code
-opputunity code 
-masters slot 2 manual
+third slot code Hanzla
+forth and fifth slot code bilal
 
 
 Thursday
-manual booking
+manual masters or bachleors and oppurtunity  both bilal and hanzla
 
 Friday
-masters slot 1 code
-bachelors slot code
-opputunity code 
+masters booking hanzla + bilal
+
+
+
 
