@@ -42,7 +42,14 @@ Oppurtunity card
 https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=21.01.2025&openingPeriodId=60825
 
 Wednesday
-
+Masters
+1: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=05.02.2025&openingPeriodId=69262
+2: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=05.02.2025&openingPeriodId=68487
+3: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=05.02.2025&openingPeriodId=68492
+4: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=05.02.2025&openingPeriodId=69263
+5: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=05.02.2025&openingPeriodId=69264
+bachelor
+1: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=05.02.2025&openingPeriodId=43847
 
 Thursday
 
