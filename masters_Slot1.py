@@ -43,11 +43,11 @@ def solve_captcha(captcha_url):
         raise Exception(f"Failed to solve CAPTCHA: {json_response}")
 
 def Time_dif():
-    return datetime.now()-datetime.now().replace(hour=22, minute=54, second=10, microsecond=0)
+    return datetime.now()-datetime.now().replace(hour=0, minute=35, second=0, microsecond=0)
 
 def wait_until_4am():
     now = datetime.now()
-    target_time = now.replace(hour=22, minute=54, second=10, microsecond=0)
+    target_time = now.replace(hour=0, minute=35, second=0, microsecond=0)
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
     wait_seconds = (target_time - now).total_seconds()
@@ -55,7 +55,7 @@ def wait_until_4am():
     time.sleep(wait_seconds)
 
 # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=07.02.2025")
 wait = WebDriverWait(driver, 10)
 
 captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
@@ -73,21 +73,21 @@ if base64_match:
         # Submit the form
         driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
         
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025&openingPeriodId=68494"
-        wait_until_4am()
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=07.02.2025&openingPeriodId=68494"
+        # wait_until_4am()
         driver.get(target_url)
         
-        print("URL get in = ", Time_dif())
+        # print("URL get in = ", Time_dif())
         
         # Fast fill all form fields using JavaScript
         form_data = {
-            'appointment_newAppointmentForm_lastname': 'KHAN',
-            'appointment_newAppointmentForm_firstname': 'AIMON',
-            'appointment_newAppointmentForm_email': 'aimonkhan24@gmail.com',
-            'appointment_newAppointmentForm_emailrepeat': 'aimonkhan24@gmail.com',
-            'appointment_newAppointmentForm_fields_0__content': 'KN4145152',
+            'appointment_newAppointmentForm_lastname': 'NAS',
+            'appointment_newAppointmentForm_firstname': 'SHARQUA',
+            'appointment_newAppointmentForm_email': 'mastersappointment@gmail.com',
+            'appointment_newAppointmentForm_emailrepeat': 'mastersappointment@gmail.com',
+            'appointment_newAppointmentForm_fields_0__content': 'ZN9890761',
             'appointment_newAppointmentForm_fields_1__content': 'Sindh',
-            'appointment_newAppointmentForm_fields_2__content': 'Paksitan'
+            'appointment_newAppointmentForm_fields_2__content': 'Pakistan'
         }
         
         # Fill all fields at once
@@ -107,7 +107,7 @@ if base64_match:
                 # Fill second captcha using JavaScript
                 fast_fill_input(driver, 'appointment_newAppointmentForm_captchaText', cap)
                 
-                print("completed form = ", Time_dif())
+                # print("completed form = ", Time_dif())
                 time.sleep(3)
                 
                 # Submit final form using JavaScript
