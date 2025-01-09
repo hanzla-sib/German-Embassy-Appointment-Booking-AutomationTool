@@ -22,6 +22,9 @@ driver = webdriver.Chrome(options=options)
 # Configuration
 API_KEY = 'lHj6eDPmIAuMz14ymqsj'
 USER_ID = 'hanzlasib@gmail.com'
+
+
+
 def solve_captcha(captcha_url):
     # Make API call to TrueCaptcha
     response = requests.post(
@@ -39,7 +42,8 @@ def solve_captcha(captcha_url):
         return json_response['result']
     else:
         raise Exception(f"Failed to solve CAPTCHA: {json_response}")
-
+def Time_dif():
+    return datetime.now()-datetime.now().replace(hour=22, minute=45, second=20, microsecond=0)  
 def wait_until_4am():
     """
     Wait until exactly 4:00:00 AM before executing the submit action
@@ -48,7 +52,7 @@ def wait_until_4am():
     now = datetime.now()
     
     # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    target_time = now.replace(hour=22, minute=45, second=20, microsecond=0)
 
     # If we've already passed 4 AM today, target tomorrow's 4 AM
     if now.time() >= target_time.time():
@@ -63,7 +67,7 @@ def wait_until_4am():
 
 
     # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=04.02.2025&openingPeriodId=68486")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025")
 # Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
@@ -95,16 +99,19 @@ if base64_match:
 
         
         submit_button.click()
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=04.02.2025&openingPeriodId=68486"
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025&openingPeriodId=68494"
         wait_until_4am()
         driver.get(target_url)
         
-       
-        
     
+       
+        print("URL get in = ", Time_dif())
+       
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
+        
         last_name = "KHAN"  # Assuming this is from the previous 2Captcha result
         lastname_input.send_keys(last_name)
+        
 
 
         firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
@@ -149,11 +156,11 @@ if base64_match:
                 captcha_input.send_keys(cap)
                 # Submit the form
                 submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
-                current_url = driver.current_url
-                print(f"Current URL BAchelors before submission: {current_url}")
+                print("completed form = ", Time_dif())
+                
                 time.sleep(3)
                 submit_button.click()
-                print("completed in = ", datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0))
+                print("completed in = ", Time_dif())
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
                 sys.exit(e)
