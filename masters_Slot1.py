@@ -14,19 +14,18 @@ import os
 from selenium.common.exceptions import TimeoutException
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 options = webdriver.ChromeOptions()
-
 options.page_load_strategy = 'eager'
 driver = webdriver.Chrome(options=options)
-# Configuration
+
 API_KEY = 'lHj6eDPmIAuMz14ymqsj'
 USER_ID = 'hanzlasib@gmail.com'
 
-
+def fast_fill_input(driver, element_id, value):
+    js_code = f'document.getElementById("{element_id}").value = "{value}";'
+    driver.execute_script(js_code)
 
 def solve_captcha(captcha_url):
-    # Make API call to TrueCaptcha
     response = requests.post(
         "https://api.apitruecaptcha.org/one/gettext",
         headers={"Content-Type": "application/json"},
@@ -42,124 +41,78 @@ def solve_captcha(captcha_url):
         return json_response['result']
     else:
         raise Exception(f"Failed to solve CAPTCHA: {json_response}")
-def Time_dif():
-    return datetime.now()-datetime.now().replace(hour=22, minute=45, second=20, microsecond=0)  
-def wait_until_4am():
-    """
-    Wait until exactly 4:00:00 AM before executing the submit action
-    """
-    # Get current time
-    now = datetime.now()
-    
-    # Calculate time to 4:00:00 AM
-    target_time = now.replace(hour=22, minute=45, second=20, microsecond=0)
 
-    # If we've already passed 4 AM today, target tomorrow's 4 AM
+def Time_dif():
+    return datetime.now()-datetime.now().replace(hour=22, minute=54, second=10, microsecond=0)
+
+def wait_until_4am():
+    now = datetime.now()
+    target_time = now.replace(hour=22, minute=54, second=10, microsecond=0)
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
-    
-    # Calculate seconds to wait
     wait_seconds = (target_time - now).total_seconds()
-    
     print(f"Waiting until exactly 4:00:00 AM. Sleeping for {wait_seconds} seconds...")
-    # Precise waiting
     time.sleep(wait_seconds)
 
-
-    # Open the target webpage
+# Open the target webpage
 driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025")
-# Use WebDriverWait for dynamic content
 wait = WebDriverWait(driver, 10)
 
 captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
-
-# Extract the background-image style attribute
 background_image_style = captcha_div.get_attribute("style")
-
-# Use regular expression to extract the base64 data from the style attribute
 base64_match = re.search(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\']?\)', background_image_style)
 
-
-# If a base64 image is found, extract it
 if base64_match:
     base64_image = base64_match.group(1)
-    cap=solve_captcha(base64_image)
+    cap = solve_captcha(base64_image)
     
     try:
-        # result = solver.normal(base64_image)
-       
-        captcha_input = driver.find_element(By.ID, 'appointment_captcha_day_captchaText')
-       
-        # captcha_code = result['code']  # Assuming this is from the previous 2Captcha result
-        captcha_input.send_keys(cap)
-       
+        # Fill first captcha using JavaScript
+        fast_fill_input(driver, 'appointment_captcha_day_captchaText', cap)
         
         # Submit the form
-        submit_button = driver.find_element(By.ID, 'appointment_captcha_day_appointment_showDay')
-
+        driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
         
-        submit_button.click()
         target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025&openingPeriodId=68494"
         wait_until_4am()
         driver.get(target_url)
         
-    
-       
         print("URL get in = ", Time_dif())
-       
-        lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
         
-        last_name = "KHAN"  # Assuming this is from the previous 2Captcha result
-        lastname_input.send_keys(last_name)
+        # Fast fill all form fields using JavaScript
+        form_data = {
+            'appointment_newAppointmentForm_lastname': 'KHAN',
+            'appointment_newAppointmentForm_firstname': 'AIMON',
+            'appointment_newAppointmentForm_email': 'aimonkhan24@gmail.com',
+            'appointment_newAppointmentForm_emailrepeat': 'aimonkhan24@gmail.com',
+            'appointment_newAppointmentForm_fields_0__content': 'KN4145152',
+            'appointment_newAppointmentForm_fields_1__content': 'Sindh',
+            'appointment_newAppointmentForm_fields_2__content': 'Paksitan'
+        }
         
-
-
-        firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "AIMON"  # Assuming this is from the previous 2Captcha result
-        firstname_input.send_keys(first_name)
-
-
-        email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "aimonkhan24@gmail.com"  # Assuming this is from the previous 2Captcha result
-        email_input.send_keys(email)
-
-
-        email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "aimonkhan24@gmail.com"  # Assuming this is from the previous 2Captcha result
-        email_input_repeat.send_keys(emailrepeat)
-
-        
-        passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "KN4145152"  # Assuming this is from the previous 2Captcha result
-        passportNumber_input.send_keys(passportnumber)
-
-        Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')
-        province = "Sindh"  # Assuming this is from the previous 2Captcha result
-        Province_input.send_keys(province)
-
-
-        Nationality_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_2__content')
-        nationality = "Paksitan"  
-        Nationality_input.send_keys(nationality)
+        # Fill all fields at once
+        js_code = ""
+        for element_id, value in form_data.items():
+            js_code += f'document.getElementById("{element_id}").value = "{value}";'
+        driver.execute_script(js_code)
 
         captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
-
         background_image_style = captcha_div.get_attribute("style")
-
         base64_match = re.search(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\']?\)', background_image_style)
         
         if base64_match:
             base64_image = base64_match.group(1)
-            cap=solve_captcha(base64_image)
+            cap = solve_captcha(base64_image)
             try:
-                captcha_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_captchaText')
-                captcha_input.send_keys(cap)
-                # Submit the form
-                submit_button = driver.find_element(By.ID, 'appointment_newAppointmentForm_appointment_addAppointment')
-                print("completed form = ", Time_dif())
+                # Fill second captcha using JavaScript
+                fast_fill_input(driver, 'appointment_newAppointmentForm_captchaText', cap)
                 
+                print("completed form = ", Time_dif())
                 time.sleep(3)
-                submit_button.click()
+                
+                # Submit final form using JavaScript
+                driver.execute_script("document.getElementById('appointment_newAppointmentForm_appointment_addAppointment').click();")
+                
                 print("completed in = ", Time_dif())
                 input("Press Enter to exit and close the browser...")
             except Exception as e:
