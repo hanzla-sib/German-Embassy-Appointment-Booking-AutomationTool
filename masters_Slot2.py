@@ -43,11 +43,11 @@ def solve_captcha(captcha_url):
         raise Exception(f"Failed to solve CAPTCHA: {json_response}")
 
 def Time_dif():
-    return datetime.now()-datetime.now().replace(hour=23, minute=59, second=59, microsecond=900)
+    return datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
 def wait_until_4am():
     now = datetime.now()
-    target_time = now.replace(hour=23, minute=59, second=59, microsecond=900)
+    target_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
     wait_seconds = (target_time - now).total_seconds()
