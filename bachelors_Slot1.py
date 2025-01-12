@@ -43,11 +43,11 @@ def solve_captcha(captcha_url):
         raise Exception(f"Failed to solve CAPTCHA: {json_response}")
 
 def Time_dif():
-    return datetime.now()-datetime.now().replace(hour=0, minute=22, second=30, microsecond=0)
+    return datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
 def wait_until_4am():
     now = datetime.now()
-    target_time = now.replace(hour=0, minute=22, second=30, microsecond=0)
+    target_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
     wait_seconds = (target_time - now).total_seconds()
@@ -55,7 +55,7 @@ def wait_until_4am():
     time.sleep(wait_seconds)
 
 # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=07.02.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=10.02.2025")
 wait = WebDriverWait(driver, 10)
 
 captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
@@ -73,7 +73,7 @@ if base64_match:
         # Submit the form
         driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
         
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=07.02.2025&openingPeriodId=43856"
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=10.02.2025&openingPeriodId=43852"
         wait_until_4am()
         driver.get(target_url)
         
@@ -107,7 +107,7 @@ if base64_match:
                 # Fill second captcha using JavaScript
                 fast_fill_input(driver, 'appointment_newAppointmentForm_captchaText', cap)
                 
-                # print("completed form = ", Time_dif())
+                print("completed form = ", Time_dif())
                 time.sleep(3)
                 
                 # Submit final form using JavaScript
