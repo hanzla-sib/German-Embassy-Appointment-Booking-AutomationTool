@@ -55,7 +55,7 @@ def wait_until_4am():
     time.sleep(wait_seconds)
 
 # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=11.02.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=12.02.2025")
 wait = WebDriverWait(driver, 10)
 
 captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
@@ -73,7 +73,7 @@ if base64_match:
         # Submit the form
         driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
         
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=11.02.2025&openingPeriodId=43846"
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=12.02.2025&openingPeriodId=43847"
         wait_until_4am()
         driver.get(target_url)
         
@@ -81,11 +81,11 @@ if base64_match:
         
         # Fast fill all form fields using JavaScript
         form_data = {
-            'appointment_newAppointmentForm_lastname': 'NAS',
-            'appointment_newAppointmentForm_firstname': 'SHARQUA',
-            'appointment_newAppointmentForm_email': 'mastersappointment@gmail.com',
-            'appointment_newAppointmentForm_emailrepeat': 'mastersappointment@gmail.com',
-            'appointment_newAppointmentForm_fields_0__content': 'ZN9890761',
+            'appointment_newAppointmentForm_lastname': 'KUMAR',
+            'appointment_newAppointmentForm_firstname': 'SANDESH',
+            'appointment_newAppointmentForm_email': 'appointmentbachelor06@gmail.com',
+            'appointment_newAppointmentForm_emailrepeat': 'appointmentbachelor06@gmail.com',
+            'appointment_newAppointmentForm_fields_0__content': 'HD4225251',
             'appointment_newAppointmentForm_fields_1__content': 'Sindh',
             'appointment_newAppointmentForm_fields_2__content': 'Pakistan'
         }
