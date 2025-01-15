@@ -47,7 +47,7 @@ Oppurtunity:
 
 Friday: 
 Masters 
-1: "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025&openingPeriodId=68494"
+1: "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025&openingPeriodId=6849"
 2:  https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=10.01.2025&openingPeriodId=68489
 
 Bachelor:
