@@ -71,6 +71,7 @@ if base64_match:
         fast_fill_input(driver, 'appointment_captcha_day_captchaText', cap)
         
         # Submit the form
+        time.sleep(3)
         driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
         
         target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=12.02.2025&openingPeriodId=43847"
