@@ -42,6 +42,9 @@ Master:
 Oppurtunity:
 1: https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=1116&categoryId=2339&dateStr=06.02.2025&openingPeriodId=60827
 
+Bachelors
+https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=13.02.2025&openingPeriodId=43848
+
 
 
 
