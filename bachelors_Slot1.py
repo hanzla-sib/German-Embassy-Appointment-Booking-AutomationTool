@@ -55,7 +55,7 @@ def wait_until_4am():
     time.sleep(wait_seconds)
 
 # Open the target webpage
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=12.02.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=14.02.2025")
 wait = WebDriverWait(driver, 10)
 
 captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))
@@ -74,7 +74,7 @@ if base64_match:
         time.sleep(3)
         driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
         
-        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=12.02.2025&openingPeriodId=43847"
+        target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=14.02.2025&openingPeriodId=43856"
         wait_until_4am()
         driver.get(target_url)
         
