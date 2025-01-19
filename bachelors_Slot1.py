@@ -46,11 +46,11 @@ def fast_fill_input(driver, element_id, value):
     driver.execute_script(js_code)
 
 def Time_dif():
-    return datetime.now()-datetime.now().replace(hour=23, minute=23, second=0, microsecond=0)
+    return datetime.now()-datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
 def wait_until_4am():
     now = datetime.now()
-    target_time = now.replace(hour=23, minute=23, second=0, microsecond=0)
+    target_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
     if now.time() >= target_time.time():
         target_time += timedelta(days=1)
     wait_seconds = (target_time - now).total_seconds()
