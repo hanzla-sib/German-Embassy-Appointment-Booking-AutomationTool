@@ -58,7 +58,7 @@ def wait_until_4am():
     time.sleep(wait_seconds)
 
 # Optimize the main flow with better error handling and reduced DOM queries
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=05.03.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=06.03.2025")
 wait = WebDriverWait(driver, 10)
 
 try:
@@ -75,17 +75,17 @@ try:
     time.sleep(3)
     driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
     
-    target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=05.03.2025&openingPeriodId=69263"
+    target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=06.03.2025&openingPeriodId=68493"
     wait_until_4am()
     driver.get(target_url)
     
     # Combine all form fields into a single JavaScript execution
     form_data = {
-        'appointment_newAppointmentForm_lastname': 'KHAN',
-        'appointment_newAppointmentForm_firstname': 'MUHAMMAD ARSALAN',
-        'appointment_newAppointmentForm_email': 'appointmentbachelor06@gmail.com',
-        'appointment_newAppointmentForm_emailrepeat': 'appointmentbachelor06@gmail.com',
-        'appointment_newAppointmentForm_fields_0__content': 'XQ4158121',
+        'appointment_newAppointmentForm_lastname': 'MALIK',
+        'appointment_newAppointmentForm_firstname': 'MUHAMMAD INSHAAL',
+        'appointment_newAppointmentForm_email': 'germanyappointment8@gmail.com',
+        'appointment_newAppointmentForm_emailrepeat': 'germanyappointment8@gmail.com',
+        'appointment_newAppointmentForm_fields_0__content': 'FU0764442',
         'appointment_newAppointmentForm_fields_1__content': 'Sindh',
         'appointment_newAppointmentForm_fields_2__content': 'Pakistan'
     }
