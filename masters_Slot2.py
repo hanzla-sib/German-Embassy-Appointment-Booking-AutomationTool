@@ -58,7 +58,7 @@ def wait_until_4am():
     time.sleep(wait_seconds)
 
 # Optimize the main flow with better error handling and reduced DOM queries
-driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=14.03.2025")
+driver.get("https://service2.diplo.de/rktermin/extern/appointment_showDay.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=17.03.2025")
 wait = WebDriverWait(driver, 10)
 
 try:
@@ -75,7 +75,7 @@ try:
     time.sleep(3)
     driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
     
-    target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=14.03.2025&openingPeriodId=68489"
+    target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=2801&dateStr=17.03.2025&openingPeriodId=68489"
     wait_until_4am()
     driver.get(target_url)
     
