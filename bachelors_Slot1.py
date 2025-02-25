@@ -75,7 +75,7 @@ try:
     time.sleep(3)
     driver.execute_script("document.getElementById('appointment_captcha_day_appointment_showDay').click();")
     
-    target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=24.03.2025&openingPeriodId=43852"
+    target_url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=kara&realmId=967&categoryId=1988&dateStr=24.03.2025&openingPeriodId=43847"
     wait_until_4am()
     driver.get(target_url)
     
