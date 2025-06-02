@@ -106,38 +106,32 @@ if base64_match:
         
        
         
-    
         lastname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_lastname')
-        last_name = "ANSARI"  # Assuming this is from the previous 2Captcha result
+        last_name = "LASTNAME"
         lastname_input.send_keys(last_name)
 
-
         firstname_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_firstname')
-        first_name = "FAHAD AHMED"  # Assuming this is from the previous 2Captcha result
+        first_name = "FIRSTNAME"
         firstname_input.send_keys(first_name)
 
-
         email_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_email')
-        email = "fahadahmadd2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        email = "dummy@email.com"
         email_input.send_keys(email)
 
-
         email_input_repeat = driver.find_element(By.ID, 'appointment_newAppointmentForm_emailrepeat')
-        emailrepeat = "fahadahmadd2025@gmail.com"  # Assuming this is from the previous 2Captcha result
+        emailrepeat = "dummy@email.com"
         email_input_repeat.send_keys(emailrepeat)
 
-        
         passportNumber_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_0__content')
-        passportnumber = "EC1719191"  # Assuming this is from the previous 2Captcha result
+        passportnumber = "P1234567"
         passportNumber_input.send_keys(passportnumber)
 
         Province_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_1__content')
-        province = "Sindh"  # Assuming this is from the previous 2Captcha result
+        province = "Province"
         Province_input.send_keys(province)
 
-
         Nationality_input = driver.find_element(By.ID, 'appointment_newAppointmentForm_fields_2__content')
-        nationality = "Paksitan"  
+        nationality = "Country"
         Nationality_input.send_keys(nationality)
 
         captcha_div = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'captcha div')))

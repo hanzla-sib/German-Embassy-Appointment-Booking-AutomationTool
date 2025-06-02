@@ -108,3 +108,5 @@ if True:
 
     except Exception as e:
         sys.exit(e)
+
+# When filling forms, use dummy values like 'LASTNAME', 'FIRSTNAME', 'dummy@email.com', 'P1234567', etc.

@@ -84,13 +84,13 @@ try:
     
     # Combine all form fields into a single JavaScript execution
     form_data = {
-        'appointment_newAppointmentForm_lastname': 'MALIK',
-        'appointment_newAppointmentForm_firstname': 'MUHAMMAD INSHAAL',
-        'appointment_newAppointmentForm_email': 'germanyappointment8@gmail.com',
-        'appointment_newAppointmentForm_emailrepeat': 'germanyappointment8@gmail.com',
-        'appointment_newAppointmentForm_fields_0__content': 'FU0764442',
-        'appointment_newAppointmentForm_fields_1__content': 'Sindh',
-        'appointment_newAppointmentForm_fields_2__content': 'Pakistan'
+        'appointment_newAppointmentForm_lastname': 'LASTNAME',
+        'appointment_newAppointmentForm_firstname': 'FIRSTNAME',
+        'appointment_newAppointmentForm_email': 'dummy@email.com',
+        'appointment_newAppointmentForm_emailrepeat': 'dummy@email.com',
+        'appointment_newAppointmentForm_fields_0__content': 'P1234567',
+        'appointment_newAppointmentForm_fields_1__content': 'Province',
+        'appointment_newAppointmentForm_fields_2__content': 'Country'
     }
     
     js_code = ';'.join(f'document.getElementById("{id}").value="{value}"' for id, value in form_data.items())

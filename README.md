@@ -34,5 +34,9 @@ This project automates the process of booking appointments using Selenium WebDri
 - ChromeDriver
 - See `requirements.txt` for Python packages.
 
+## Notes on Form Data
+- All scripts use only dummy values for form fields such as name, email, passport number, province, and country. No personal information is present in the code.
+- The field `appointment_newAppointmentForm_fields_0__content` corresponds to the passport number.
+
 ## Disclaimer
 This tool is for educational and personal automation purposes only. Use responsibly and in accordance with the terms of service of the websites you interact with.
