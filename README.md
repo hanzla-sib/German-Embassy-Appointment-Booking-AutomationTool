@@ -1,6 +1,6 @@
 # Appointment Booking Automation Tool
 
-This project automates the process of booking appointments using Selenium WebDriver and TrueCaptcha API.
+This project is a fully automated tool for booking appointments at the German Embassy in Karachi. It uses Selenium WebDriver and TrueCaptcha API to automate the entire process, including CAPTCHA solving and form submission.
 
 ## Features
 - Automated form filling for various appointment types (Bachelor, Master, Opportunity, etc.)
