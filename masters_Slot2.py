@@ -12,14 +12,17 @@ import json
 import sys
 import os
 from selenium.common.exceptions import TimeoutException
+from dotenv import load_dotenv
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 options = webdriver.ChromeOptions()
 options.page_load_strategy = 'eager'
 driver = webdriver.Chrome(options=options)
 
-API_KEY = 'lHj6eDPmIAuMz14ymqsj'
-USER_ID = 'hanzlasib@gmail.com'
+load_dotenv()
+API_KEY = os.getenv('API_KEY')
+USER_ID = os.getenv('USER_ID')
 
 # Pre-compile the regex pattern for better performance
 BASE64_PATTERN = re.compile(r'url\(["\']?(data:image\/[a-zA-Z]+;base64,[^"\']*)["\']?\)')
